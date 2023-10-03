@@ -1,0 +1,11 @@
+on: push
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-22.04
+    container: likesimba9/cpp_ci_image:1.0
+    steps:
+    - uses: actions/checkout@v2 
+    - run: mkdir build; cd build; cmake ..; cmake --build . 
+    - name: Run GTest
+      run: cd build; test_template/test_template_lib; lcov -t "test_template/test_template_lib" -o coverage_template.info -c -d test_template/; genhtml -o report coverage_template.info 

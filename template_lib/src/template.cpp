@@ -2,3 +2,4 @@
 
 
 void Example::foo() {};
+void Example::too() {};
